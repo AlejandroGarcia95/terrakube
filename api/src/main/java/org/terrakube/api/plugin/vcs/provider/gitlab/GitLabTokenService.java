@@ -21,7 +21,7 @@ public class GitLabTokenService {
                         .queryParam("client_secret", clientSecret)
                         .queryParam("code",tempCode)
                         .queryParam("grant_type", "authorization_code")
-                        .queryParam("redirect_uri", String.format("https://%s/callback/v1/vcs/%s", hostname, callback == null ? vcsId: callback))
+                        .queryParam("redirect_uri", String.format("http://%s/callback/v1/vcs/%s", hostname, callback == null ? vcsId: callback))
                         .build())
                 .retrieve().bodyToMono(GitLabToken.class).block();
 
@@ -34,7 +34,7 @@ public class GitLabTokenService {
                         .queryParam("client_secret", clientSecret)
                         .queryParam("refresh_token", refreshToken)
                         .queryParam("grant_type", "refresh_token")
-                        .queryParam("redirect_uri", String.format("https://%s/callback/v1/vcs/%s", hostname, callback == null ? vcsId: callback))
+                        .queryParam("redirect_uri", String.format("http://%s/callback/v1/vcs/%s", hostname, callback == null ? vcsId: callback))
                         .build())
                 .retrieve().bodyToMono(GitLabToken.class).block();
 
